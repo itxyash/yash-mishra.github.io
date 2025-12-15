@@ -702,6 +702,31 @@
         .impact-section .impact-metric { margin:0.4rem 0; color:var(--color-text-secondary); display:flex; gap:0.6rem; align-items:flex-start; }
 
         .modal-close { position: absolute; top: 12px; right: 14px; background: transparent; border: none; color: var(--color-text-secondary); font-size: 1.15rem; cursor: pointer; }
+        /* Toast / feedback */
+        .toast {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            background: rgba(10,14,39,0.95);
+            color: var(--color-text-primary);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0,217,255,0.06);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+            z-index: 3000;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* Light theme overrides */
+        body.light {
+            --color-bg-dark: #f7fbff;
+            --color-bg-light: #ffffff;
+            --color-text-primary: #061024;
+            --color-text-secondary: #334155;
+            background: linear-gradient(135deg, #f7fbff 0%, #ffffff 100%);
+            color: var(--color-text-primary);
+        }
     </style>
 </head>
 <body>
@@ -714,6 +739,7 @@
             <li><a href="#qa">AI Q&A</a></li>
             <li><a href="#awards">Awards</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button id="themeToggle" class="btn btn-secondary" style="padding:8px 14px;">🌗</button></li>
         </ul>
     </nav>
 
@@ -726,6 +752,7 @@
             <div class="cta-buttons">
                 <button class="btn btn-primary" onclick="document.getElementById('qa').scrollIntoView({behavior: 'smooth'})">Ask Me Anything</button>
                 <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <button id="downloadResumeBtn" class="btn btn-secondary">Download Resume</button>
             </div>
         </div>
     </section>
@@ -814,8 +841,19 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Impactful Projects</h2>
+        <div class="projects-controls" style="display:flex;gap:1rem;align-items:center;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;">
+            <input id="projectSearch" type="search" placeholder="Search projects or tech (e.g. 'U-Net', 'GenAI')" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(0,217,255,0.12);background:rgba(10,14,39,0.6);color:var(--color-text-primary);min-width:260px;" />
+            <div id="projectTags" style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;">
+                <button class="btn btn-secondary tag-filter" data-tag="all">All</button>
+                <button class="btn btn-secondary tag-filter" data-tag="cv">CV</button>
+                <button class="btn btn-secondary tag-filter" data-tag="genai">GenAI</button>
+                <button class="btn btn-secondary tag-filter" data-tag="manufacturing">Manufacturing</button>
+                <button class="btn btn-secondary tag-filter" data-tag="healthcare">Healthcare</button>
+                <button class="btn btn-secondary tag-filter" data-tag="timeseries">TimeSeries</button>
+            </div>
+        </div>
         <div class="projects-grid">
-            <div class="project-card" onclick="openProjectModal('defect')">
+            <div class="project-card" data-tags="cv,manufacturing" onclick="openProjectModal('defect')">
                 <div class="project-header">
                     <h3>🔍 Chipset Defect Detection</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Image Segmentation | Manufacturing</p>
@@ -837,7 +875,7 @@
                 </div>
             </div>
 
-            <div class="project-card" onclick="openProjectModal('ecommerce')">
+            <div class="project-card" data-tags="genai,ecommerce" onclick="openProjectModal('ecommerce')">
                 <div class="project-header">
                     <h3>🛍️ Multimodal E-commerce RAG</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">GenAI | LLM + Vision</p>
@@ -859,7 +897,7 @@
                 </div>
             </div>
 
-            <div class="project-card" onclick="openProjectModal('sensor')">
+            <div class="project-card" data-tags="timeseries,manufacturing" onclick="openProjectModal('sensor')">
                 <div class="project-header">
                     <h3>📊 Sensor Data Analysis</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Time Series | Manufacturing</p>
@@ -881,7 +919,7 @@
                 </div>
             </div>
 
-            <div class="project-card" onclick="openProjectModal('medical')">
+            <div class="project-card" data-tags="healthcare,nlp" onclick="openProjectModal('medical')">
                 <div class="project-header">
                     <h3>🏥 Medical Entity Extraction</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">LLM | Healthcare</p>
@@ -903,7 +941,7 @@
                 </div>
             </div>
 
-            <div class="project-card" onclick="openProjectModal('aki')">
+            <div class="project-card" data-tags="healthcare,ml" onclick="openProjectModal('aki')">
                 <div class="project-header">
                     <h3>⚕️ AKI Risk Prediction</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">ML Model | Healthcare</p>
@@ -925,7 +963,7 @@
                 </div>
             </div>
 
-            <div class="project-card" onclick="openProjectModal('video')">
+            <div class="project-card" data-tags="cv,broadcast" onclick="openProjectModal('video')">
                 <div class="project-header">
                     <h3>🎬 Video Stitching & Detection</h3>
                     <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Computer Vision | Broadcasting</p>
@@ -1035,7 +1073,10 @@
 
             <div class="contact-item">
                 <h3 style="color: var(--color-primary); margin-bottom: 1rem;">✉️ Email</h3>
-                <a href="mailto:yash.mishra0501@gmail.com">yash.mishra0501@gmail.com</a>
+                    <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+                        <a id="contactEmailLink" href="mailto:yash.mishra0501@gmail.com">yash.mishra0501@gmail.com</a>
+                        <button id="copyEmailBtn" class="btn btn-secondary" style="padding:6px 10px;font-size:0.85rem;">Copy</button>
+                    </div>
             </div>
 
             <div class="contact-item">
@@ -1071,6 +1112,8 @@
             <div id="modalBody"></div>
         </div>
     </div>
+
+    <div id="siteToast" class="toast" role="status" aria-live="polite"></div>
 
     <script>
         // AI Response Database
@@ -1624,6 +1667,128 @@
         };
 
         setTimeout(animateExpertiseBars, 500);
+
+        /* ---------- New helper features: theme, resume, filters, copy-email ---------- */
+        function showToast(message, duration = 2200) {
+            const toast = document.getElementById('siteToast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, duration);
+        }
+
+        // Theme toggle
+        function applyTheme(theme) {
+            if (theme === 'light') document.body.classList.add('light');
+            else document.body.classList.remove('light');
+            const btn = document.getElementById('themeToggle');
+            if (btn) btn.textContent = theme === 'light' ? '🌞' : '🌗';
+        }
+
+        function toggleTheme() {
+            const isLight = document.body.classList.toggle('light');
+            const theme = isLight ? 'light' : 'dark';
+            localStorage.setItem('siteTheme', theme);
+            applyTheme(theme);
+            showToast(theme === 'light' ? 'Light theme enabled' : 'Dark theme enabled');
+        }
+
+        function initTheme() {
+            const saved = localStorage.getItem('siteTheme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            applyTheme(theme);
+        }
+
+        // Resume download logging
+        function downloadResume() {
+            // trigger browser download using the attached resume file
+            const link = document.createElement('a');
+            link.href = 'Yash_Resume_Basic_24_11_25.pdf';
+            link.setAttribute('download', 'Yash_Mishra_Resume.pdf');
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            // log locally (analytics can be added later)
+            const key = 'resumeDownloads';
+            const prev = parseInt(localStorage.getItem(key) || '0', 10);
+            localStorage.setItem(key, String(prev + 1));
+            showToast('Resume download started — recruiters love that!');
+        }
+
+        // Copy email to clipboard
+        async function copyEmail() {
+            const email = document.getElementById('contactEmailLink')?.textContent?.trim();
+            if (!email) return showToast('Email not found');
+            try {
+                await navigator.clipboard.writeText(email);
+                showToast('Email copied to clipboard');
+            } catch (err) {
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = email;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                showToast('Email copied to clipboard');
+            }
+        }
+
+        // Project filters/search
+        let activeTag = 'all';
+        function filterProjects() {
+            const q = document.getElementById('projectSearch')?.value.toLowerCase().trim() || '';
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tags = (card.dataset.tags || '').toLowerCase();
+                const text = card.innerText.toLowerCase();
+                const matchesTag = activeTag === 'all' || tags.split(',').includes(activeTag);
+                const matchesQuery = q === '' || text.includes(q);
+                card.style.display = (matchesTag && matchesQuery) ? 'flex' : 'none';
+            });
+        }
+
+        // Debounce helper
+        function debounce(fn, wait = 200){
+            let t;
+            return function(...args){
+                clearTimeout(t);
+                t = setTimeout(() => fn.apply(this, args), wait);
+            };
+        }
+
+        // Initialize bindings
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+
+            const themeBtn = document.getElementById('themeToggle');
+            if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+
+            const resumeBtn = document.getElementById('downloadResumeBtn');
+            if (resumeBtn) resumeBtn.addEventListener('click', downloadResume);
+
+            const copyBtn = document.getElementById('copyEmailBtn');
+            if (copyBtn) copyBtn.addEventListener('click', copyEmail);
+
+            const search = document.getElementById('projectSearch');
+            if (search) search.addEventListener('input', debounce(filterProjects, 180));
+
+            document.querySelectorAll('.tag-filter').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.tag-filter').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeTag = btn.dataset.tag || 'all';
+                    filterProjects();
+                });
+            });
+
+            // default select 'All'
+            const allBtn = document.querySelector('.tag-filter[data-tag="all"]');
+            if (allBtn) allBtn.classList.add('active');
+        });
     </script>
 </body>
 </html>
