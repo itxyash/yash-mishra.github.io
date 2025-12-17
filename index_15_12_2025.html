@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Mishra - Senior ML Engineer</title>
+    <style>
+        :root {
+            --color-primary: #00d9ff;
+            --color-secondary: #ff006e;
+            --color-accent: #8338ec;
+            --color-bg-dark: #0a0e27;
+            --color-bg-light: #16213e;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #b0b0b0;
+            --color-success: #06ffa5;
+            --color-warning: #ffb703;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--color-bg-dark) 0%, #1a1a2e 100%);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(131, 56, 236, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2), transparent);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(131, 56, 236, 0.2), transparent);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -2px;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(0, 217, 255, 0.4), 0 0 40px rgba(131, 56, 236, 0.2);
+                filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.3));
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(0, 217, 255, 0.6), 0 0 60px rgba(131, 56, 236, 0.4);
+                filter: drop-shadow(0 0 25px rgba(131, 56, 236, 0.5));
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: var(--color-bg-dark);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skill-category:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(131, 56, 236, 0.1));
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: var(--color-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(131, 56, 236, 0.1));
+            padding: 2rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .project-header h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .impact-metrics {
+            background: rgba(0, 217, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--color-success);
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-success);
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(131, 56, 236, 0.2), rgba(255, 0, 110, 0.1));
+            border: 1px solid rgba(131, 56, 236, 0.4);
+            color: var(--color-accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* AI Q&A Section */
+        .qa-section {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(131, 56, 236, 0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .qa-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .qa-subtitle {
+            color: var(--color-text-secondary);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .qa-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .qa-input {
+            flex: 1;
+            background: rgba(10, 14, 39, 0.6);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--color-text-primary);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .qa-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .qa-input::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+        .qa-response {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            min-height: 150px;
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            margin-top: 1rem;
+            display: none;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        .qa-response.active {
+            display: block;
+        }
+
+        .response-header {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .response-content {
+            color: var(--color-text-secondary);
+        }
+
+        .response-highlight {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* Awards Section */
+        .awards-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 2rem 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: center;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .timeline-item:nth-child(even) {
+            grid-template-columns: 1fr 2rem 1fr;
+            direction: rtl;
+        }
+
+        .timeline-item:nth-child(even) > div {
+            direction: ltr;
+        }
+
+        .timeline-content {
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-marker {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .timeline-marker::after {
+            content: '★';
+            color: var(--color-bg-dark);
+            font-size: 0.8rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--color-primary), transparent);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(22, 33, 62, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .timeline-item:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-line {
+                left: 15px;
+            }
+
+            .qa-input-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            color: var(--color-text-secondary);
+            margin-top: 3rem;
+        }
+
+        /* Project Modal Styles */
+        #projectModal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        #projectModal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(180deg, rgba(10,14,39,0.98), rgba(22,33,62,0.98));
+            border-radius: 12px;
+            max-width: 980px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid rgba(0,217,255,0.08);
+            position: relative;
+        }
+
+        .modal-header .modal-title {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            font-weight: 800;
+        }
+
+        .modal-header .modal-subtitle {
+            color: var(--color-text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-section {
+            margin-top: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .tech-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .tech-item { background: rgba(131,56,236,0.08); padding: 0.35rem 0.7rem; border-radius: 10px; color: var(--color-accent); border: 1px solid rgba(131,56,236,0.12); font-weight: 600; font-size: 0.85rem; }
+
+        .tech-details { display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.75rem; }
+        .tech-detail-item { background: rgba(10,14,39,0.6); padding:0.8rem; border-radius:8px; min-width:120px; text-align:center; border:1px solid rgba(0,217,255,0.06); }
+
+        .impact-section .impact-metric { margin:0.4rem 0; color:var(--color-text-secondary); display:flex; gap:0.6rem; align-items:flex-start; }
+
+        .modal-close { position: absolute; top: 12px; right: 14px; background: transparent; border: none; color: var(--color-text-secondary); font-size: 1.15rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#qa">AI Q&A</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Yash Mishra</h1>
+            <p>Senior Machine Learning Engineer | GenAI Specialist | MLOps Expert</p>
+            <p style="font-size: 1rem; margin-top: 1rem;">Building production-grade AI solutions across Healthcare, E-commerce & Manufacturing</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('qa').scrollIntoView({behavior: 'smooth'})">Ask Me Anything</button>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>🤖 ML & Deep Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">LLMs</span>
+                    <span class="skill-tag">RAG</span>
+                    <span class="skill-tag">CNNs</span>
+                    <span class="skill-tag">U-Net</span>
+                    <span class="skill-tag">XGBoost</span>
+                    <span class="skill-tag">Time Series</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🌐 NLP & LLM Ecosystem</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Gemini 1.5 Pro</span>
+                    <span class="skill-tag">GPT-4</span>
+                    <span class="skill-tag">LangChain</span>
+                    <span class="skill-tag">FAISS</span>
+                    <span class="skill-tag">Pinecone</span>
+                    <span class="skill-tag">Transformers</span>
+                    <span class="skill-tag">PII Masking</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>⚙️ MLOps & Deployment</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Vertex AI</span>
+                    <span class="skill-tag">TFX</span>
+                    <span class="skill-tag">Kubeflow</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Model Monitoring</span>
+                    <span class="skill-tag">Feature Store</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>☁️ Cloud & Data</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">GCP</span>
+                    <span class="skill-tag">BigQuery</span>
+                    <span class="skill-tag">Looker</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🔧 Programming & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Streamlit</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>📊 Specializations</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">Image Segmentation</span>
+                    <span class="skill-tag">Predictive Analytics</span>
+                    <span class="skill-tag">Healthcare AI</span>
+                    <span class="skill-tag">SHAP Analysis</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Impactful Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openProjectModal('defect')">
+                <div class="project-header">
+                    <h3>🔍 Chipset Defect Detection</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Image Segmentation | Manufacturing</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Advanced defect detection system using U-Net & U-Net++ architectures for multi-class micro-defect localization in chipset manufacturing.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ 93%+ Accuracy</div>
+                        <div class="metric">✓ 98% Reduction in Manual Review</div>
+                        <div class="metric">✓ Real-time QA Automation</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">U-Net</span>
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">Custom Augmentation</span>
+                        <span class="tech-badge">IoU Loss</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('ecommerce')">
+                <div class="project-header">
+                    <h3>🛍️ Multimodal E-commerce RAG</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">GenAI | LLM + Vision</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Intelligent product recommendation engine combining Gemini 1.5 Pro image understanding with CLIP + BERT embeddings for personalized retrieval.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ Real-time Recommendations</div>
+                        <div class="metric">✓ Multimodal Embeddings</div>
+                        <div class="metric">✓ GCP Vertex AI Deploy</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Gemini 1.5</span>
+                        <span class="tech-badge">CLIP</span>
+                        <span class="tech-badge">RAG</span>
+                        <span class="tech-badge">Vertex AI</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('sensor')">
+                <div class="project-header">
+                    <h3>📊 Sensor Data Analysis</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Time Series | Manufacturing</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">ML pipeline analyzing 1.2M+ sensor logs for predictive maintenance. SHAP-based feature selection from 1600 tags to identify critical downtime patterns.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ 15-20% Downtime Reduction</div>
+                        <div class="metric">✓ Proactive Alerts</div>
+                        <div class="metric">✓ Looker Dashboard</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">SHAP</span>
+                        <span class="tech-badge">BigQuery</span>
+                        <span class="tech-badge">Looker</span>
+                        <span class="tech-badge">Time Series</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('medical')">
+                <div class="project-header">
+                    <h3>🏥 Medical Entity Extraction</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">LLM | Healthcare</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">LLM-based NER pipeline using Gemini 1.5 Pro to extract clinical entities from physician notes with PHI/PII masking using Google DLP.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ 80% Faster Processing</div>
+                        <div class="metric">✓ HIPAA Compliant</div>
+                        <div class="metric">✓ HL7 Schema Integration</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Gemini 1.5</span>
+                        <span class="tech-badge">Google DLP</span>
+                        <span class="tech-badge">HL7</span>
+                        <span class="tech-badge">NER</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('aki')">
+                <div class="project-header">
+                    <h3>⚕️ AKI Risk Prediction</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">ML Model | Healthcare</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Benchmarked 10 ML models (XGBoost, AutoML, BQML) for Acute Kidney Injury prediction with SHAP explainability and comprehensive monitoring.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ 91%+ AUC</div>
+                        <div class="metric">✓ Explainable Predictions</div>
+                        <div class="metric">✓ Drift Detection</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">XGBoost</span>
+                        <span class="tech-badge">AutoML</span>
+                        <span class="tech-badge">SHAP</span>
+                        <span class="tech-badge">Vertex AI</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('video')">
+                <div class="project-header">
+                    <h3>🎬 Video Stitching & Detection</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Computer Vision | Broadcasting</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Real-time multi-camera video stitching using OpenCV SIFT with YOLO V8 object detection for broadcast-ready player and ball tracking.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ Real-time Processing</div>
+                        <div class="metric">✓ 7-Camera Stitching</div>
+                        <div class="metric">✓ Object Tracking</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">OpenCV</span>
+                        <span class="tech-badge">YOLO V8</span>
+                        <span class="tech-badge">SIFT</span>
+                        <span class="tech-badge">Real-time</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Q&A Section -->
+    <section id="qa">
+        <h2 class="section-title">Ask Me About Your Role</h2>
+        <div class="qa-section">
+            <div class="qa-container">
+                <p class="qa-subtitle">💬 Ask about my experience, projects, or how I'll add value to your organization</p>
+                
+                <div class="qa-input-group">
+                    <input 
+                        type="text" 
+                        id="qaInput" 
+                        class="qa-input" 
+                        placeholder="E.g., 'We need MLOps expertise for healthcare AI' or 'Can you handle computer vision projects?'"
+                        onkeypress="handleKeyPress(event)"
+                    />
+                    <button class="btn btn-primary" onclick="getAIResponse()">Ask</button>
+                </div>
+
+                <div id="qaResponse" class="qa-response">
+                    <div class="response-header" id="responseHeader"></div>
+                    <div class="response-content" id="responseContent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Certifications -->
+    <section id="awards">
+        <h2 class="section-title">Awards & Recognition</h2>
+        <div class="awards-timeline">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item">
+                <div></div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>🏆 Unsung Hero Award</h3>
+                    <p><strong>Quantiphi</strong> - Recognized for consistently delivering high-impact ML and Generative AI solutions across healthcare and manufacturing domains</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>⭐ SPOT Award</h3>
+                    <p><strong>Quantiphi</strong> - Outstanding contribution in automating medical entity extraction and clinical risk prediction using Gemini 1.5 Pro</p>
+                </div>
+                <div class="timeline-marker"></div>
+                <div></div>
+            </div>
+
+            <div class="timeline-item">
+                <div></div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>🎓 Google Certified</h3>
+                    <p><strong>Google Cloud Certifications</strong> - Generative AI Leader | Professional ML Engineer | Associate Cloud Engineer | 17 GenAI Badges</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>📚 Leadership & Mentorship</h3>
+                    <p><strong>Quantiphi</strong> - Led teams of 3-4 data scientists, mentored interns on LLMOps, image segmentation, and GCP deployment practices</p>
+                </div>
+                <div class="timeline-marker"></div>
+                <div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">📍 Location</h3>
+                <p>Bengaluru, India</p>
+            </div>
+
+            <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">📞 Phone</h3>
+                <a href="tel:+919407058050">+91 9407058050</a>
+            </div>
+
+            <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">✉️ Email</h3>
+                <a href="mailto:yash.mishra0501@gmail.com">yash.mishra0501@gmail.com</a>
+            </div>
+
+            <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">🔗 LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/yash-mishra-a039a31a9/" target="_blank">Connect with me</a>
+            </div>
+
+            <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">📝 Medium</h3>
+                <a href="https://medium.com/@yash.mishra0501" target="_blank">Read my articles</a>
+            </div>
+
+            <!-- <div class="contact-item">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">💻 GitHub</h3>
+                <a href="https://github.com" target="_blank">Check my code</a>
+            </div> -->
+        </div>
+
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Ready to collaborate on cutting-edge AI/ML projects?</p>
+            <a href="mailto:yash.mishra0501@gmail.com" class="btn btn-primary">Start a Conversation</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Yash Mishra. Built with passion for AI/ML excellence. All rights reserved.</p>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" role="dialog" aria-modal="true" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // AI Response Database
+        const responseDatabase = {
+            // MLOps queries
+            'mlops': {
+                header: '🔧 MLOps & Production Excellence',
+                content: `I've designed and implemented <span class="response-highlight">production-grade CI/CD ML pipelines</span> on GCP using Vertex AI, TFX, and Kubeflow. Here's what I bring to your MLOps needs:
+
+                <strong>Experience:</strong>
+                • Architected automated ML workflows with model versioning, drift detection, and monitoring
+                • Reduced model iteration time by <span class="response-highlight">40%</span> using Cloud Build and Artifact Registry
+                • Implemented TFX data validation, preprocessing, and schema checks across pipeline stages
+                • Set up Vertex AI Model Monitoring with custom alerting for performance degradation
+
+                <strong>Your Benefits:</strong>
+                ✓ Faster model-to-production cycles
+                ✓ Reproducible, version-controlled ML workflows
+                ✓ Automated monitoring and drift detection
+                ✓ Scalable infrastructure for enterprise needs`
+            },
+
+            // Computer Vision queries
+            'computer vision': {
+                header: '👁️ Computer Vision & Image Processing',
+                content: `I specialize in advanced computer vision solutions with proven results across manufacturing and media:
+
+                <strong>Key Projects:</strong>
+                • <span class="response-highlight">Chipset Defect Detection</span> - 93%+ accuracy with U-Net/U-Net++ achieving 98% reduction in manual inspection
+                • <span class="response-highlight">Video Stitching</span> - Real-time 7-camera alignment with YOLO V8 object detection for broadcast
+                • Custom image segmentation pipelines with advanced data augmentation
+
+                <strong>Technical Stack:</strong>
+                ✓ Deep Learning: U-Net, U-Net++, CNN, YOLO
+                ✓ Classical: OpenCV, SIFT, image registration
+                ✓ Frameworks: TensorFlow, Keras, PyTorch
+                ✓ Your Advantage: End-to-end solutions from model design to production deployment`
+            },
+
+            // Healthcare AI
+            'healthcare': {
+                header: '⚕️ Healthcare AI & Clinical AI Systems',
+                content: `I've delivered transformative AI solutions for healthcare with strict compliance and proven impact:
+
+                <strong>Delivered Solutions:</strong>
+                • <span class="response-highlight">Medical Entity Extraction</span> - 80% faster physician note processing using Gemini 1.5 Pro with HIPAA-compliant PHI/PII masking
+                • <span class="response-highlight">AKI Risk Prediction</span> - 91%+ AUC model benchmarking 10 algorithms for early triage
+                • Clinical data pipelines with HL7 schema integration
+
+                <strong>Your Organization Gains:</strong>
+                ✓ Automated clinical workflows
+                ✓ HIPAA/GDPR compliant implementations
+                ✓ Explainable predictions with SHAP analysis
+                ✓ Faster decision-making for patient care`
+            },
+
+            // GenAI & LLMs
+            'generative ai': {
+                header: '🤖 Generative AI & LLM Solutions',
+                content: `I'm certified as a <span class="response-highlight">Google Generative AI Leader</span> with hands-on expertise in production LLM systems:
+
+                <strong>Capabilities:</strong>
+                • Advanced RAG systems combining vision + text for e-commerce recommendations
+                • Prompt engineering with token optimization for cost-efficiency
+                • LLM-based entity extraction with async batching and dynamic shortening
+                • Vector DB integration (FAISS, Pinecone) for semantic search
+
+                <strong>Your Use Cases:</strong>
+                ✓ Intelligent chatbots with context awareness
+                ✓ Document processing and analysis at scale
+                ✓ Personalized recommendations engines
+                ✓ Knowledge base automation`
+            },
+
+            // Manufacturing/IoT
+            'manufacturing': {
+                header: '🏭 Manufacturing Intelligence & IoT',
+                content: `I've built data-driven solutions for manufacturing with immediate ROI:
+
+                <strong>Achievements:</strong>
+                • Analyzed <span class="response-highlight">1.2M+ sensor logs</span> to identify downtime patterns
+                • Used SHAP feature selection to identify critical 96 sensors from 1600 tags
+                • Implemented Looker dashboards with proactive ML-based alerts
+                • Achieved <span class="response-highlight">15-20% reduction in unplanned downtime</span>
+
+                <strong>Your Gains:</strong>
+                ✓ Predictive maintenance reducing unexpected failures
+                ✓ Data-driven operational efficiency
+                ✓ Real-time monitoring and alerting
+                ✓ Significant cost savings through optimization`
+            },
+
+            // Team leadership
+            'leadership': {
+                header: '👥 Team Leadership & Mentorship',
+                content: `I bring hands-on leadership experience scaling ML teams:
+
+                <strong>Proven Track Record:</strong>
+                • Led cross-functional teams of 3-4 data scientists on complex ML/GenAI projects
+                • Mentored interns and new joiners on LLMOps, segmentation workflows, and GCP deployment
+                • Client SPOC for high-priority healthcare and manufacturing engagements
+                • Spearheaded internal knowledge-sharing on Vertex AI, Prompt Optimization, and RAG architecture
+
+                <strong>Value to Your Team:</strong>
+                ✓ Structured project delivery with clear outcomes
+                ✓ Knowledge transfer and capability building
+                ✓ Best practices in MLOps and AI architecture
+                ✓ Culture of innovation and continuous learning`
+            },
+
+            // Technical stack
+            'cloud': {
+                header: '☁️ Cloud & Data Infrastructure',
+                content: `I'm deeply experienced with enterprise-grade cloud platforms:
+
+                <strong>GCP Expertise (Primary):</strong>
+                • Vertex AI Pipelines, AutoML, BigQuery, Looker, Cloud Functions
+                • Model training, deployment, monitoring, and optimization
+                • Scalable data pipelines and ETL workflows
+
+                <strong>Data Engineering:</strong>
+                • BigQuery optimization for complex queries
+                • Feature engineering and feature store implementation
+                • Real-time streaming pipelines with Apache Beam
+                • Data quality and validation frameworks
+
+                <strong>Your Benefits:</strong>
+                ✓ Cost-optimized cloud infrastructure
+                ✓ Scalable, production-ready solutions
+                ✓ Enterprise compliance and security
+                ✓ Integration with existing systems`
+            },
+
+            // Default response
+            'default': {
+                header: '💡 How I Can Help Your Organization',
+                content: `I'm a <span class="response-highlight">Senior ML Engineer with GenAI expertise</span>, combining technical depth with business impact:
+
+                <strong>Core Strengths:</strong>
+                ✓ End-to-end ML solution design and deployment
+                ✓ Production MLOps and CI/CD automation
+                ✓ Generative AI and LLM system architecture
+                ✓ Healthcare & manufacturing domain expertise
+                ✓ Team leadership and knowledge mentorship
+
+                <strong>What I Deliver:</strong>
+                • 93%+ accuracy defect detection systems
+                • 40% reduction in model deployment time
+                • 80% faster clinical data processing
+                • 15-20% reduction in operational downtime
+
+                <strong>Next Steps:</strong>
+                Feel free to ask about specific technologies, project types, or team fit. I'm ready to discuss how I can accelerate your AI initiatives!`
+            }
+        };
+
+        function findBestMatch(query) {
+            const lowerQuery = query.toLowerCase();
+            const keywords = {
+                'mlops': ['mlops', 'pipeline', 'production', 'deployment', 'ci/cd', 'vertex', 'kubeflow', 'automation'],
+                'computer vision': ['vision', 'defect', 'image', 'segmentation', 'detection', 'yolo', 'opencv', 'camera', 'video'],
+                'healthcare': ['health', 'medical', 'clinical', 'aki', 'patient', 'ehr', 'hipaa', 'entity extraction'],
+                'generative ai': ['genai', 'llm', 'gemini', 'gpt', 'rag', 'prompt', 'chatbot', 'generative', 'language model'],
+                'manufacturing': ['manufacturing', 'sensor', 'iot', 'downtime', 'predictive', 'maintenance', 'industrial'],
+                'leadership': ['lead', 'team', 'mentor', 'management', 'guide', 'leadership'],
+                'cloud': ['cloud', 'gcp', 'bigquery', 'looker', 'aws', 'infrastructure', 'data engineering']
+            };
+
+            for (const [category, words] of Object.entries(keywords)) {
+                for (const word of words) {
+                    if (lowerQuery.includes(word)) {
+                        return category;
+                    }
+                }
+            }
+            return 'default';
+        }
+
+        function getAIResponse() {
+            const input = document.getElementById('qaInput').value.trim();
+            
+            if (!input) {
+                alert('Please ask a question!');
+                return;
+            }
+
+            const responseDiv = document.getElementById('qaResponse');
+            const headerDiv = document.getElementById('responseHeader');
+            const contentDiv = document.getElementById('responseContent');
+
+            // Show loading state
+            headerDiv.innerHTML = '<span class="loading-dots"><span></span><span></span><span></span></span> Thinking...';
+            responseDiv.classList.add('active');
+
+            // Simulate processing delay for better UX
+            setTimeout(() => {
+                const category = findBestMatch(input);
+                const response = responseDatabase[category];
+                
+                headerDiv.innerHTML = response.header;
+                contentDiv.innerHTML = response.content;
+                
+                // Scroll to response
+                responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 800);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                getAIResponse();
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Project Details Database
+        const projectDetails = {
+            defect: {
+                title: '🔍 Chipset Defect Detection with U-Net Segmentation',
+                subtitle: 'Manufacturing Intelligence | Image Segmentation',
+                overview: `Engineered a sophisticated computer vision pipeline that automated the detection and localization of micro-defects in chipset manufacturing. This project reduced manual QA inspection time by 98% while maintaining 93%+ accuracy in detecting subtle manufacturing defects.`,
+                challenge: `Manufacturing quality control requires detecting defects as small as 10-50 micrometers in high-resolution images. The challenge was: training models with limited labeled data, handling class imbalance, and deploying in real-time production environments.`,
+                solution: `
+                    <strong>Architecture:</strong> Custom U-Net and U-Net++ models trained on augmented datasets
+                    <br><strong>Key Innovation:</strong> Custom class mapping with IoU and Dice loss optimization
+                    <br><strong>Data Strategy:</strong> Advanced augmentation (rotation, blur, noise injection) with synthetic defect generation
+                    <br><strong>Deployment:</strong> TensorFlow Serving for <10ms inference latency
+                `,
+                impact: [
+                    '93%+ Accuracy in multi-class defect detection',
+                    '98% Reduction in manual inspection time',
+                    'Real-time processing: <50ms per image',
+                    'Enabled automated visual QA with full traceability',
+                    'Cost savings: $2M+ annually for the manufacturing partner'
+                ],
+                technologies: {
+                    'Deep Learning': ['U-Net', 'U-Net++', 'Keras', 'TensorFlow'],
+                    'Computer Vision': ['OpenCV', 'Image Segmentation', 'Custom Augmentation', 'Morphological Operations'],
+                    'Model Optimization': ['IoU Loss', 'Dice Loss', 'Class Weighting', 'Data Validation'],
+                    'Deployment': ['TensorFlow Serving', 'Docker', 'Cloud Run', 'Real-time Inference']
+                },
+                keyMetrics: [
+                    { label: 'Model Accuracy', value: '93%+', color: '#06ffa5' },
+                    { label: 'Inference Time', value: '<50ms', color: '#00d9ff' },
+                    { label: 'Time Saved', value: '98%', color: '#8338ec' },
+                    { label: 'Uptime', value: '99.9%', color: '#ff006e' }
+                ],
+                yourValue: `If your organization manufactures precision components, I can deliver similar solutions with proven ROI. My expertise in segmentation, class imbalance handling, and production deployment ensures rapid time-to-value.`
+            },
+
+            ecommerce: {
+                title: '🛍️ Multimodal E-Commerce RAG System',
+                subtitle: 'GenAI | Retrieval-Augmented Generation | LLM + Vision',
+                overview: `Built an intelligent product recommendation engine that combines Gemini 1.5 Pro's image understanding with CLIP-based visual embeddings and BERT text embeddings. The system delivers personalized, context-aware product suggestions in real-time.`,
+                challenge: `E-commerce platforms need recommendations that understand both visual similarity and semantic meaning. Traditional recommendation systems miss cross-category products or fail when customers search with images instead of text.`,
+                solution: `
+                    <strong>Multimodal Architecture:</strong>
+                    <br>• Image Processing: Gemini 1.5 Pro generates rich product descriptions from images
+                    <br>• Embeddings: CLIP (vision) + BERT (text) create unified vector space
+                    <br>• RAG Pipeline: Pinecone vector DB for semantic search at scale
+                    <br>• LLM Integration: Gemini generates personalized recommendations with explanations
+                `,
+                impact: [
+                    'Real-time product recommendations with <200ms latency',
+                    'Multimodal search: users can search by image, text, or both',
+                    'Personalized explanations for each recommendation',
+                    '35% improvement in recommendation click-through rate',
+                    'Seamless integration with existing e-commerce APIs'
+                ],
+                technologies: {
+                    'LLM & Vision': ['Gemini 1.5 Pro', 'CLIP', 'Vision Transformers', 'Multimodal Embeddings'],
+                    'RAG Framework': ['LangChain', 'Pinecone', 'Vector Databases', 'Prompt Engineering'],
+                    'ML Stack': ['TensorFlow', 'Sentence Transformers', 'Async Processing'],
+                    'Cloud': ['GCP Vertex AI', 'Cloud Functions', 'Cloud Storage']
+                },
+                keyMetrics: [
+                    { label: 'Response Time', value: '<200ms', color: '#00d9ff' },
+                    { label: 'CTR Improvement', value: '+35%', color: '#06ffa5' },
+                    { label: 'Modalities', value: '3x', color: '#8338ec' },
+                    { label: 'Accuracy', value: '89%', color: '#ffb703' }
+                ],
+                yourValue: `If you're building recommendation systems or AI-powered search, I bring production-grade multimodal expertise. I've optimized LLM costs by 60% through token reduction and implemented systems handling millions of daily queries.`
+            },
+
+            sensor: {
+                title: '📊 Manufacturing Sensor Data Analytics Pipeline',
+                subtitle: 'Time Series Forecasting | Predictive Maintenance | MLOps',
+                overview: `Developed a machine learning pipeline analyzing 1.2M+ IoT sensor logs to predict equipment downtime. Using SHAP-based feature engineering, I reduced 1600 sensor tags to 96 critical indicators, delivering 15-20% reduction in unplanned downtime.`,
+                challenge: `Manufacturing facilities generate massive sensor streams. The challenge: identifying which of 1600 sensor signals matter, detecting anomalies in real-time, and triggering proactive alerts before failures occur.`,
+                solution: `
+                    <strong>Data Strategy:</strong> Rolling windows, statistical aggregation, lag features
+                    <br><strong>Feature Engineering:</strong> SHAP analysis identified 96 critical features from 1600 candidates
+                    <br><strong>Models:</strong> Ensemble of XGBoost + LSTM for anomaly detection
+                    <br><strong>Visualization:</strong> Looker dashboards with real-time BigQuery integration
+                    <br><strong>Deployment:</strong> Cloud Scheduler + Cloud Functions for continuous monitoring
+                `,
+                impact: [
+                    '15-20% Reduction in unplanned downtime',
+                    'Proactive alerts 48-72 hours before failures',
+                    'Feature reduction: 1600 → 96 (94% dimensionality reduction)',
+                    'ROI: $5M+ annually for manufacturing partner',
+                    'Real-time Looker dashboards with automatic alerting'
+                ],
+                technologies: {
+                    'Data Processing': ['BigQuery', 'Apache Beam', 'Pandas', 'SQL'],
+                    'ML Models': ['XGBoost', 'LSTM', 'Anomaly Detection', 'SHAP'],
+                    'Feature Engineering': ['Statistical Features', 'Time-Series Lags', 'Fourier Features'],
+                    'Visualization & Deployment': ['Looker', 'Cloud Scheduler', 'Cloud Functions', 'Vertex AI']
+                },
+                keyMetrics: [
+                    { label: 'Downtime Reduction', value: '15-20%', color: '#06ffa5' },
+                    { label: 'Early Warning', value: '48-72h', color: '#00d9ff' },
+                    { label: 'Features Used', value: '96/1600', color: '#8338ec' },
+                    { label: 'Model Accuracy', value: '94%', color: '#ffb703' }
+                ],
+                yourValue: `For IoT and manufacturing data challenges, I deliver end-to-end solutions: data pipeline architecture, feature engineering, model training, and real-time monitoring. I've saved multiple organizations millions through predictive maintenance.`
+            },
+
+            medical: {
+                title: '🏥 LLM-Powered Medical Entity Extraction System',
+                subtitle: 'NLP | Healthcare AI | HIPAA Compliance',
+                overview: `Built an enterprise-grade NLP pipeline using Gemini 1.5 Pro to automatically extract clinical entities (medications, diagnoses, procedures, dosages) from unstructured physician notes. Achieved 80% faster processing with full HIPAA compliance.`,
+                challenge: `Healthcare systems drown in unstructured clinical notes. Manual extraction is error-prone and expensive. The challenge: accurate entity recognition, HIPAA compliance, integration with existing EHR systems, and handling diverse clinical terminology.`,
+                solution: `
+                    <strong>LLM Architecture:</strong> Few-shot prompting with Gemini 1.5 Pro
+                    <br><strong>Privacy:</strong> Google DLP for PII/PHI masking before and after processing
+                    <br><strong>Structure:</strong> Output formatting to HL7/FHIR standards
+                    <br><strong>Optimization:</strong> Dynamic token shortening for cost reduction
+                    <br><strong>Integration:</strong> Async batching for hospital-scale processing
+                `,
+                impact: [
+                    '80% Reduction in note review time',
+                    'HIPAA Compliant with automated PII/PHI masking',
+                    'HL7 Schema integration for seamless EHR adoption',
+                    'Accuracy: 94% precision on clinical entity extraction',
+                    'Processed 500K+ clinical documents'
+                ],
+                technologies: {
+                    'LLM & NLP': ['Gemini 1.5 Pro', 'Few-Shot Prompting', 'Entity Recognition', 'Token Optimization'],
+                    'Healthcare Compliance': ['Google DLP', 'PII Masking', 'HL7 Standards', 'FHIR Integration'],
+                    'Architecture': ['Async Batching', 'Error Handling', 'Retry Logic', 'Monitoring'],
+                    'Deployment': ['Cloud Functions', 'Cloud Tasks', 'Vertex AI Pipelines']
+                },
+                keyMetrics: [
+                    { label: 'Processing Speed', value: '80% Faster', color: '#06ffa5' },
+                    { label: 'Precision', value: '94%', color: '#00d9ff' },
+                    { label: 'Compliance', value: 'HIPAA ✓', color: '#8338ec' },
+                    { label: 'Documents', value: '500K+', color: '#ffb703' }
+                ],
+                yourValue: `For healthcare AI initiatives, I bring production expertise: clinical NLP, HIPAA compliance, EHR integration, and proven optimization for enterprise scale. I understand the regulatory landscape and deliver compliant, reliable systems.`
+            },
+
+            aki: {
+                title: '⚕️ AKI Risk Prediction Model Suite',
+                subtitle: 'Healthcare Analytics | Predictive Modeling | Explainability',
+                overview: `Benchmarked 10 machine learning models (XGBoost, AutoML Tables, BigQuery ML) for Acute Kidney Injury prediction using clinical records. Achieved 91%+ AUC with SHAP-based explainability and comprehensive model monitoring.`,
+                challenge: `Predicting AKI early is critical for patient outcomes. Challenge: handling imbalanced clinical data, ensuring model explainability for clinician trust, selecting optimal architecture, and deploying with continuous monitoring.`,
+                solution: `
+                    <strong>Model Benchmarking:</strong> 10 algorithms evaluated (XGBoost, LightGBM, AutoML, BQML, Neural Networks)
+                    <br><strong>Data Preparation:</strong> Feature engineering from 200+ clinical variables
+                    <br><strong>Explainability:</strong> SHAP analysis for clinical interpretability
+                    <br><strong>Monitoring:</strong> Drift detection, performance tracking, automated retraining
+                    <br><strong>Deployment:</strong> Vertex AI Pipelines for production workflow
+                `,
+                impact: [
+                    '91%+ AUC - Outperformed baseline by 12%',
+                    'SHAP explanations for clinician trust',
+                    'Automated drift detection and retraining',
+                    'Faster AKI identification enables earlier intervention',
+                    'Improved patient outcomes through early prediction'
+                ],
+                technologies: {
+                    'ML Models': ['XGBoost', 'AutoML Tables', 'BigQuery ML', 'LightGBM', 'Neural Networks'],
+                    'Explainability': ['SHAP', 'Feature Importance', 'LIME', 'Model Interpretability'],
+                    'Monitoring': ['Vertex AI Monitoring', 'Custom Metrics', 'Drift Detection', 'Alerting'],
+                    'Deployment': ['Vertex AI Pipelines', 'TFX', 'Cloud Build', 'Model Registry']
+                },
+                keyMetrics: [
+                    { label: 'AUC Score', value: '91%+', color: '#06ffa5' },
+                    { label: 'Models Tested', value: '10', color: '#00d9ff' },
+                    { label: 'F1 Score', value: '0.88', color: '#8338ec' },
+                    { label: 'Early Warning', value: '48h+', color: '#ffb703' }
+                ],
+                yourValue: `If you need predictive healthcare models with clinical validation, I deliver: rigorous benchmarking, explainable AI, regulatory compliance, and production monitoring. I've worked with healthcare systems on similar critical prediction tasks.`
+            },
+
+            video: {
+                title: '🎬 Real-Time Multi-Camera Video Stitching & Object Detection',
+                subtitle: 'Computer Vision | Real-Time Processing | Broadcasting',
+                overview: `Engineered a sophisticated computer vision system that stitches video from 7 synchronized cameras in real-time while simultaneously detecting and tracking players and ball movement. Produces broadcast-ready output with <100ms latency.`,
+                challenge: `Live broadcasting requires seamless video stitching from multiple angles with real-time object detection. Challenges: camera synchronization, homography estimation, real-time feature matching, and maintaining detection accuracy across seams.`,
+                solution: `
+                    <strong>Video Stitching:</strong> OpenCV SIFT for real-time feature matching
+                    <br><strong>Homography:</strong> Incremental stitching pipeline for efficiency
+                    <br><strong>Detection:</strong> YOLO V8 optimized for real-time inference
+                    <br><strong>Synchronization:</strong> Frame-level synchronization with error correction
+                    <br><strong>Output:</strong> Broadcast-ready H.264 encoding
+                `,
+                impact: [
+                    'Real-time processing: 7-camera stitching at 30fps',
+                    'Sub-100ms latency for broadcast transmission',
+                    '95%+ object detection accuracy',
+                    'Seamless stitching across camera boundaries',
+                    'Broadcast-quality output from live feeds'
+                ],
+                technologies: {
+                    'Computer Vision': ['OpenCV', 'SIFT', 'Feature Matching', 'Homography'],
+                    'Object Detection': ['YOLO V8', 'Real-time Inference', 'Multi-class Detection'],
+                    'Video Processing': ['H.264 Encoding', 'Frame Synchronization', 'Buffer Management'],
+                    'Optimization': ['GPU Acceleration', 'Async Processing', 'Memory Management']
+                },
+                keyMetrics: [
+                    { label: 'Processing FPS', value: '30fps', color: '#06ffa5' },
+                    { label: 'Latency', value: '<100ms', color: '#00d9ff' },
+                    { label: 'Detection Accuracy', value: '95%+', color: '#8338ec' },
+                    { label: 'Cameras', value: '7x', color: '#ffb703' }
+                ],
+                yourValue: `For real-time video processing, sports tech, or broadcasting, I deliver production solutions: camera calibration, real-time stitching, object tracking, and GPU optimization. Experience includes live streaming and broadcast systems.`
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const project = projectDetails[projectId];
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+
+            let techGrid = '';
+            for (const [category, techs] of Object.entries(project.technologies)) {
+                techGrid += `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--color-primary); margin-bottom: 0.7rem;">${category}</h4>
+                        <div class="tech-grid">
+                            ${techs.map(tech => `<div class="tech-item">${tech}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            let metricsGrid = '';
+            project.keyMetrics.forEach(metric => {
+                metricsGrid += `
+                    <div class="tech-detail-item">
+                        <div style="color: ${metric.color}; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">${metric.value}</div>
+                        <div style="color: var(--color-text-secondary); font-size: 0.85rem;">${metric.label}</div>
+                    </div>
+                `;
+            });
+
+            let impactPoints = '';
+            project.impact.forEach(impact => {
+                impactPoints += `<div class="impact-metric"><span>✓</span> ${impact}</div>`;
+            });
+
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <div class="modal-title">${project.title}</div>
+                    <div class="modal-subtitle">${project.subtitle}</div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📋 Project Overview</h3>
+                    <p>${project.overview}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🎯 The Challenge</h3>
+                    <p>${project.challenge}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>⚙️ Solution Architecture</h3>
+                    <p>${project.solution}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📊 Key Metrics & Performance</h3>
+                    <div class="tech-details">
+                        ${metricsGrid}
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <h4>💡 Impact & Results</h4>
+                    ${impactPoints}
+                </div>
+
+                <div class="modal-section">
+                    <h3>🛠️ Technology Stack</h3>
+                    ${techGrid}
+                </div>
+
+                <div class="modal-section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(131, 56, 236, 0.05)); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--color-accent);">
+                    <h3 style="color: var(--color-accent);">💼 What This Means For Your Organization</h3>
+                    <p>${project.yourValue}</p>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target.id !== 'projectModal') return;
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Add scroll animation to sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Animate expertise bars on scroll
+        const animateExpertiseBars = () => {
+            const bars = document.querySelectorAll('.expertise-bar-fill');
+            bars.forEach(bar => {
+                const width = bar.parentElement.parentElement.getAttribute('data-width');
+                if (width) {
+                    bar.style.width = width + '%';
+                }
+            });
+        };
+
+        setTimeout(animateExpertiseBars, 500);
+    </script>
+</body>
+</html>
