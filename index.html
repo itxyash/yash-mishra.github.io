@@ -984,6 +984,52 @@
                     <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
                 </div>
             </div>
+
+            <!-- New Project: AI-Powered Enterprise Productivity Platform -->
+            <div class="project-card" data-tags="enterprise,rag,genai" onclick="openProjectModal('enterprise')">
+                <div class="project-header">
+                    <h3>🏢 AI-Powered Enterprise Productivity Platform</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">RAG | Enterprise Integration | Multimodal AI</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">End-to-end enterprise knowledge platform integrating JIRA/Confluence data, enabling RAG-powered assistants and multimodal generation/editing.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ Context-aware AI responses</div>
+                        <div class="metric">✓ Enterprise-grade data ingestion</div>
+                        <div class="metric">✓ Multimodal generation & editing</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">RAG</span>
+                        <span class="tech-badge">Gemini/LLMs</span>
+                        <span class="tech-badge">REST APIs</span>
+                        <span class="tech-badge">Prompt Engineering</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
+
+            <!-- New Project: Governed Agentic AI Platform -->
+            <div class="project-card" data-tags="governance,security,agentic" onclick="openProjectModal('governed')">
+                <div class="project-header">
+                    <h3>🛡️ Governed Agentic AI Platform</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">GRC | Agentic AI | Zero Trust</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Built a Governance-First Agentic AI platform embedding GRC controls, policy-as-code, and zero-trust security for autonomous agents.</p>
+                    <div class="impact-metrics">
+                        <div class="metric">✓ Traceable & auditable agent decisions</div>
+                        <div class="metric">✓ Real-time policy enforcement</div>
+                        <div class="metric">✓ High availability & resilience</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">OPA</span>
+                        <span class="tech-badge">NeMo Guardrails</span>
+                        <span class="tech-badge">mTLS</span>
+                        <span class="tech-badge">OpenTelemetry</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--color-primary); font-size: 0.85rem; cursor: pointer;">→ Click for details</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1542,6 +1588,66 @@
                 ],
                 yourValue: `For real-time video processing, sports tech, or broadcasting, I deliver production solutions: camera calibration, real-time stitching, object tracking, and GPU optimization. Experience includes live streaming and broadcast systems.`
             }
+
+            ,
+            enterprise: {
+                title: '🏢 AI-Powered Enterprise Productivity Platform',
+                subtitle: 'RAG | Enterprise Integration | Multimodal AI',
+                overview: `Built a production-grade enterprise productivity platform that unlocks knowledge from collaboration systems (JIRA, Confluence) and powers context-aware RAG assistants with multimodal generation and editing capabilities.`,
+                challenge: `Enterprises store critical knowledge across fragmented systems and content types (issues, pages, attachments). The challenge was secure ingestion, normalization of heterogeneous formats, and preparing data for context-rich AI experiences.`,
+                solution: `
+                    <strong>System Integration:</strong> Robust connectors for JIRA/Confluence using REST APIs with secure authentication
+                    <br><strong>Data Prep:</strong> Parsing HTML/markdown, attachment extraction, chunking and embedding pipeline for RAG
+                    <br><strong>Multimodal:</strong> Server-side LLM integration for text-to-image generation and image editing flows handling base64 streams
+                    <br><strong>Agents:</strong> Conversational AI agent with function-calling to automate ticketing workflows
+                `,
+                impact: [
+                    'Context-aware RAG responses from enterprise KBs',
+                    'Faster knowledge discovery and fewer escalations',
+                    'Multimodal generation and in-app image editing for richer answers'
+                ],
+                technologies: {
+                    'Integration': ['JIRA REST API', 'Confluence API', 'Webhook ingest'],
+                    'RAG & LLMs': ['Vector DB', 'LLM multimodal', 'Prompt engineering'],
+                    'Engineering': ['Async pipelines', 'Base64 image handling', 'Server-side rendering'],
+                    'Agents': ['Function calling', 'JSON schema actions', 'Secure API execution']
+                },
+                keyMetrics: [
+                    { label: 'Knowledge Coverage', value: '95%', color: '#06ffa5' },
+                    { label: 'Response Latency', value: '<200ms', color: '#00d9ff' },
+                    { label: 'CTR Improvement', value: '+28%', color: '#8338ec' }
+                ],
+                yourValue: `I can build enterprise-grade RAG systems that integrate with your tools, enabling secure automation, discovery, and multimodal assistance for knowledge workers.`
+            },
+
+            governed: {
+                title: '🛡️ Governed Agentic AI Platform',
+                subtitle: 'GRC | Agentic AI | Zero Trust',
+                overview: `Delivered a Governance-First Agentic AI Platform that enables safe, auditable deployment of autonomous agents for high-stakes business decisions by embedding GRC into the platform core.`,
+                challenge: `Autonomous agents introduce regulatory, security and operational risks. The challenge was to design a platform that enforces policy, ensures traceability, and provides resilient control planes for critical operations.`,
+                solution: `
+                    <strong>Governance-First:</strong> Policy-as-Code (OPA / NeMo Guardrails) with real-time enforcement
+                    <br><strong>Security:</strong> Zero Trust identity, mTLS, per-agent service accounts, and VPC controls
+                    <br><strong>Observability:</strong> Immutable data lineage and telemetry (OpenTelemetry, Datadog) for auditability
+                    <br><strong>Resilience:</strong> Automated circuit breakers, backup/versioned snapshots, and dependency-aware rollback
+                `,
+                impact: [
+                    'Traceable and auditable agent decisions',
+                    'Mitigated regulatory and reputational risk',
+                    'Operational assurance with automated control planes'
+                ],
+                technologies: {
+                    'Governance': ['Open Policy Agent', 'NeMo Guardrails', 'Policy-as-Code'],
+                    'Security': ['mTLS', 'Workload Identity Federation', 'VPC Service Controls'],
+                    'Resilience': ['OpenTelemetry', 'Datadog APM', 'Versioned snapshots']
+                },
+                keyMetrics: [
+                    { label: 'Policy Compliance', value: '100% enforced', color: '#06ffa5' },
+                    { label: 'Recovery RTO', value: '<15m', color: '#00d9ff' },
+                    { label: 'Agent Uptime', value: '99.99%', color: '#ff006e' }
+                ],
+                yourValue: `I deliver governed AI platforms where autonomous agents can operate safely under enforced policies, full observability, and enterprise-grade resilience.`
+            }
         };
 
         function openProjectModal(projectId) {
@@ -1706,7 +1812,7 @@
         function downloadResume() {
             // trigger browser download using the attached resume file
             const link = document.createElement('a');
-            link.href = 'Yash_Resume_Basic_24_11_25.pdf';
+            link.href = 'Yash_Resume_Basic.pdf';
             link.setAttribute('download', 'Yash_Mishra_Resume.pdf');
             document.body.appendChild(link);
             link.click();
